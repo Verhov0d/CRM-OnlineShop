@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TovaryMain</title>
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: ghostwhite;
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 60%;
+      height: 400px;
+      background-color: #E8E8E8;
+      margin-top: 20px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-photo {
+      width: auto;
+      height: 100%;
+      border-radius: 16px 0 0 16px;
+      object-fit: contain;
+    }
+
+    .dish-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+      width: 100%;
+      height: auto;
+    }
+
+    .menu-name {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #1f1f1f;
+    }
+
+    .menu-desc {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #424242;
+    }
+
+    .menu-price {
+      font-size: 36px;
+      color: #4CAF50;
+      align-self: flex-end;
+      margin-top: auto;
+    }
+
+    .btn {
+      background-color: #4CAF50;
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-size: 18px;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 300;
+      cursor: pointer;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn:hover {
+      background-color: #66BB6A;
+      transition: .3s;
+    }
+
+    .search {
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      font-size: 18px;
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      max-width: 100%;
+      margin-right: 10px;
+    }
+
+    .btns {
+      background-color: rgba(45, 175, 145, 0.45);
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-size: 18px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 300;
+      cursor: pointer;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .button-row button {
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h1 style="font-size: 36px; margin-top: 80px;">Товары</h1>
+
+<div class="center-items">
+  <form action="/korzina/glavnaya/filter" method="get">
+    <input class="search" type="text" placeholder="Введите наименование товара" name="searchName">
+    <input class="btns" type="submit" value="Найти">
+  </form>
+</div>
+
+<ul style="
+   display: flex;
+   flex-wrap: wrap;
+   flex-basis: 25px;
+   margin-left: 30px;
+   margin-right: 30px;
+   display:flex;
+   list-style:none;
+">
+
+  <form action="/korzina/glavnaya" method="get">
+    <div class="button-row">
+      <input class="btns" type="submit" value="Всё" >
+    </div>
+  </form>
+  <form action="/korzina/glavnaya/fildvU" method="get">
+    <div class="button-row">
+      <input class="btns" type="submit" value="Услуги" >
+    </div>
+  </form>
+  <li th:each="el : ${listKategoryproduct}" style="display: inline">
+<form method="get" th:action="'/korzina/glavnaya/fildv/' + ${el.getId}">
+  <div class="button-row">
+    <input class="btns" type="submit" th:value="${el.getNazvprod()}">
+  </div>
+</form>
+  </li>
+</ul>
+
+<form class="main-container" th:action="@{/korzina/glavnaya}" method="post" th:each="el : ${listProduct}">
+  <img class="menu-photo" th:src="${el.getFotoproduct()}">
+  <div class="dish-info">
+    <input type="hidden" name="id" th:value="${el.getId}">
+    <p class="menu-name" th:text="${el.getNameproduct()}"></p>
+    <p class="menu-desc" th:text="${el.getOpisproduct()}"></p>
+    <p class="menu-price" th:text="${el.getCostproduct()} + '₽'"></p>
+    <input class="btn" type="submit" value="Добавить в корзину">
+  </div>
+</form>
+
+
+<form class="main-container" th:action="@{/korzina/glavnayaU}" method="post" th:each="el : ${listUsluga}">
+  <img class="menu-photo" th:src="${el.getFotosluga()}">
+  <div class="dish-info">
+    <input type="hidden" name="id" th:value="${el.getId}">
+    <p class="menu-name" th:text="${el.getNameusluga()}"></p>
+    <p class="menu-desc" th:text="${el.getOpisusluga()}"></p>
+    <p class="menu-price" th:text="${el.getCostusluga()} + '₽'"></p>
+    <input class="btn" type="submit" value="Добавить в корзину">
+  </div>
+</form>
+</body>
+</html>

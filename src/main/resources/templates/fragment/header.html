@@ -1,0 +1,21 @@
+<div class="container" th:fragment="head">
+  <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+      <li><a href="/stat" class="nav-link px-2 link-dark">Статистика</a></li>
+      <li><a href="/employee" class="nav-link px-2 link-dark">Сотрудники</a></li>
+      <li><a href="/dolj" class="nav-link px-2 link-dark">Должности</a></li>
+      <li><a href="/klient" class="nav-link px-2 link-dark">Клиенты</a></li>
+      <li><a href="/kategoryproduct" class="nav-link px-2 link-dark">Категории товаров</a></li>
+      <li><a href="/product" class="nav-link px-2 link-dark">Товары</a></li>
+      <li><a href="/usluga" class="nav-link px-2 link-dark">Услуги</a></li>
+      <li><a href="/sale" class="nav-link px-2 link-dark">Скидки</a></li>
+      <li><a href="/postavshik" class="nav-link px-2 link-dark">Поставщики</a></li>
+      <li><a href="/proizvoditel" class="nav-link px-2 link-dark">Производители</a></li>
+      <li><a href="/check" class="nav-link px-2 link-dark">Чек</a></li>
+      <li><a href="/productcheck" class="nav-link px-2 link-dark">Товар чек</a></li>
+      <li><a href="/uslugacheck" class="nav-link px-2 link-dark">Услуга чек</a></li>
+      <form th:action="@{/logout}" method="post"><input type="submit" value="Выйти"/></form>
+    </ul>
+    </ul>
+  </header>
+</div>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    body {
+        font-family: "Bookman Old Style";
+        background: ghostwhite;
+    }
+    .center-items{
+        text-align: center;
+        vertical-align: middle;
+    }
+    h1{
+        font-size: 28px;
+        color: black;
+        text-decoration: none;
+        font-weight: 500;
+        text-align: center;
+        margin: 15px;
+        vertical-align: middle;
+    }
+    .formStyle{
+        margin: 35px auto;
+        border-radius: 5px;
+        padding: 4px 12px;
+        width: 750px;
+        background: rgba(67,216,228,0.42);
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .formItem{
+        font-size: 24px;
+        font-weight: 500;
+        background-color: rgba(52,52,52,0.24);
+        border-radius: 5px;
+        padding: 12px;
+        color: cyan;
+        border-color: cyan;
+        margin: 7px;
+        border-width: 1px;
+        width: 710px;
+    }
+    .errorView{
+        margin-left: 7px;
+        color: darkred;
+    }
+</style>
+
+<body>
+<h1>Измененить данные о услуге чеке</h1>
+<div class="formStyle">
+    <label>
+        <form method="post" th:object="${servicecheck}">
+            <input class="formItem" type="date" name="dataPribor" th:field="*{dataPribor}" placeholder="Дата приобретения"/> <br/>
+            <div th:if="${#fields.hasErrors('dataPribor')}" th:errors="*{dataPribor}" class="errorView"></div>
+            <p>Общая стоимость</p>
+            <select name="check_name">
+                <div th:each="element : ${checks}">
+                    <option th:value="${element.getId()}" th:text="${element.getObshayacost}"/>
+                </div>
+            </select>
+            <p>Наименование услуги</p>
+            <select name="usluga_name">
+                <div  th:each="element : ${uslugas}">
+                    <option th:value="${element.getId()}" th:text="${element.getNameusluga}"/>
+                </div>
+            </select>
+            <input class="formItem" type="submit" value="Отправить данные"> <br/>
+        </form>
+    </label>
+</div>
+</body>
+</html>

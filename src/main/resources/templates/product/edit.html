@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    body {
+        font-family: "Bookman Old Style";
+        background: ghostwhite;
+    }
+    .center-items{
+        text-align: center;
+        vertical-align: middle;
+    }
+    h1{
+        font-size: 28px;
+        color: black;
+        text-decoration: none;
+        font-weight: 500;
+        text-align: center;
+        margin: 15px;
+        vertical-align: middle;
+    }
+    .formStyle{
+        margin: 35px auto;
+        border-radius: 5px;
+        padding: 4px 12px;
+        width: 750px;
+        background: rgba(67,216,228,0.42);
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .formItem{
+        font-size: 24px;
+        font-weight: 500;
+        background-color: rgba(52,52,52,0.24);
+        border-radius: 5px;
+        padding: 12px;
+        color: cyan;
+        border-color: cyan;
+        margin: 7px;
+        border-width: 1px;
+        width: 710px;
+    }
+    .select-css {
+        display: block;
+        font-size: 16px;
+        font-family: 'Segoe UI Semibold',serif;
+        font-weight: 500;
+        color: black;
+        width: 98%;
+        margin: 7px;
+        padding: 12px;
+        border: 1px solid rgba(67,216,228,0.42);
+        box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+        border-radius: 5px;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: cyan;
+        background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, rgba(67,216,228,0.42) 0%, rgba(0,0,0,.04) 100%);
+        background-repeat: no-repeat, repeat;
+        background-position: right .7em top 50%, 0 0;
+        background-size: .65em auto, 100%;
+    }
+    .errorView{
+        margin-left: 7px;
+        color: darkred;
+    }
+</style>
+
+<body>
+<h1>Измененить данные о товаре</h1>
+<div class="formStyle">
+    <label>
+        <form method="post" th:object="${product}">
+            <input class="formItem" type="text" name="nameproduct" th:value="${nameproduct}" th:field="*{nameproduct}" placeholder="Наименование"/> <br/>
+            <div th:if="${#fields.hasErrors('nameproduct')}" th:errors="*{nameproduct}" class="errorView"></div>
+            <input class="formItem" type="text" name="costproduct" th:value="${costproduct}" th:field="*{costproduct}" placeholder="Стоимость"/> <br/>
+            <div th:if="${#fields.hasErrors('costproduct')}" th:errors="*{costproduct}" class="errorView"></div>
+            <input class="formItem" type="date" name="datapost" th:value="${datapost}" th:field="*{datapost}" placeholder="Дата поставки"/> <br/>
+            <div th:if="${#fields.hasErrors('datapost')}" th:errors="*{datapost}" class="errorView"></div>
+            <input class="formItem" type="text" name="opisproduct" th:value="${opisproduct}" th:field="*{opisproduct}" placeholder="Описание продукта"/> <br/>
+            <div th:if="${#fields.hasErrors('opisproduct')}" th:errors="*{opisproduct}" class="errorView"></div>
+            <input class="formItem" type="text" name="fotoproduct" th:value="${fotoproduct}" th:field="*{fotoproduct}" placeholder="Ссылка на фото продукта"/> <br/>
+            <div th:if="${#fields.hasErrors('fotoproduct')}" th:errors="*{fotoproduct}" class="errorView"></div>
+            <p>Поставщик</p>
+            <select class="select-css" name="postavshiks_name">
+            <div th:each="element : ${postavshiks}">
+                <option th:value="${element.getId()}" th:text="${element.getNamepostavshik}"/>
+            </div>
+            </select>
+            <p>Категория товара</p>
+            <select class="select-css" name="kategoryProducts_name">
+            <div th:each="element : ${kategoryProducts}">
+                <option th:value="${element.getId()}" th:text="${element.getNazvprod}"/>
+            </div>
+            </select>
+            <p>Производитель</p>
+            <select class="select-css" name="proizvoditels_name">
+            <div th:each="element : ${proizvoditels}">
+                <option th:value="${element.getId()}" th:text="${element.getNameproizvoditel}"/>
+            </div>
+            </select>
+            <input class="formItem" type="submit" value="Отправить данные"> <br/>
+        </form>
+    </label>
+</div>
+</body>
+</html>

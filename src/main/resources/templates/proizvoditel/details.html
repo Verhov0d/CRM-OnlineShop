@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    body {
+        font-family: "Bookman Old Style";
+        background: ghostwhite;
+    }
+    .center-items{
+        text-align: center;
+        vertical-align: middle;
+    }
+    .formStyle{
+        margin: 35px auto;
+        border-radius: 5px;
+        padding: 4px 12px;
+        width: 750px;
+        background: rgba(88,88,88,0.82);
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .formItem{
+        margin-bottom: 5px;
+        margin-top: 5px;
+        margin-left: 10px;
+        text-decoration: none;
+        color: cyan;
+    }
+    .btn{
+        background-color: rgba(88,88,88,0.82);
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 24px;
+        text-decoration: none;
+        color: cyan;
+        font-weight: 500;
+    }
+</style>
+
+<body>
+<div>
+    <div class="formItem" th:each="el : ${proizvoditelUGU}">
+        <p class="formStyle" th:text="'Номер: '+${el.getId()}"></p>
+        <p class="formStyle" th:text="'Наименование: '+${el.getNameproizvoditel()}"></p>
+        <p class="formStyle" th:text="'Адрес: '+${el.getAdressproizvoditel}"></p>
+        <p class="formStyle" th:text="'Контактный номер: '+${el.getKontaktniynumber}"></p>
+        <div class="center-items">
+            <a class="btn" th:href="'/proizvoditel/edit/'+${el.getId()}">Изменить</a>
+            <a class="btn" th:href="'/proizvoditel/delete/'+${el.getId()}">Удалить</a>
+            <a class="btn" th:href="'/proizvoditel'">Назад</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

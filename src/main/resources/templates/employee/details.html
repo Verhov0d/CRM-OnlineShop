@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    body {
+        font-family: "Bookman Old Style";
+        background: ghostwhite;
+    }
+    .center-items{
+        text-align: center;
+        vertical-align: middle;
+    }
+    .formStyle{
+        margin: 35px auto;
+        border-radius: 5px;
+        padding: 4px 12px;
+        width: 750px;
+        background: rgba(88,88,88,0.82);
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .formItem{
+        margin-bottom: 5px;
+        margin-top: 5px;
+        margin-left: 10px;
+        text-decoration: none;
+        color: cyan;
+    }
+    .btn{
+        background-color: rgba(88,88,88,0.82);
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 24px;
+        text-decoration: none;
+        color: cyan;
+        font-weight: 500;
+    }
+</style>
+
+<body>
+<div>
+    <div class="formItem" th:each="el : ${employeeUGU}">
+        <p class="formStyle" th:text="'Номер: '+${el.getId()}"></p>
+        <p class="formStyle" th:text="'Фамилия: '+${el.getSurname()}"></p>
+        <p class="formStyle" th:text="'Имя: '+${el.getName}"></p>
+        <p class="formStyle" th:text="'Отчество: '+${el.getOtchestvo}"></p>
+        <p class="formStyle" th:text="'Логин: '+${el.getUsername}"></p>
+        <p class="formStyle" th:text="'Пароль: '+${el.getPassword}"></p>
+        <div class="formStyle" th:each="el_: ${el.getDolj()}">
+        <p class="formStyle" th:text="'Должность: '+${el_.getNamedolj()}"></p>
+        </div>
+        <p class="formStyle" th:text="'Роль: '+${el.getRoles}"></p>
+        <div class="center-items">
+            <a class="btn" th:href="'/employee/edit/'+${el.getId()}">Изменить</a>
+            <a class="btn" th:href="'/employee/delete/'+${el.getId()}">Удалить</a>
+            <a class="btn" th:href="'/employee'">Назад</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

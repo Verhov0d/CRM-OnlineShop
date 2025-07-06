@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    body {
+        font-family: "Bookman Old Style";
+        background: ghostwhite;
+    }
+    .center-items{
+        text-align: center;
+        vertical-align: middle;
+    }
+    .formStyle{
+        margin: 35px auto;
+        border-radius: 5px;
+        padding: 4px 12px;
+        width: 750px;
+        background: rgba(88,88,88,0.82);
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .formItem{
+        margin-bottom: 5px;
+        margin-top: 5px;
+        margin-left: 10px;
+        text-decoration: none;
+        color: cyan;
+    }
+    .btn{
+        background-color: rgba(88,88,88,0.82);
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 24px;
+        text-decoration: none;
+        color: cyan;
+        font-weight: 500;
+    }
+</style>
+
+<body>
+<div>
+    <div class="formItem" th:each="el : ${productUGU}">
+        <p class="formStyle" th:text="'Номер: '+${el.getId()}"></p>
+        <p class="formStyle" th:text="'Наименование: '+${el.getNameproduct()}"></p>
+        <p class="formStyle" th:text="'Стоимость: '+${el.getCostproduct}"></p>
+        <p class="formStyle" th:text="'Дата поставки: '+${el.getDatapost}"></p>
+        <p class="formStyle" th:text="'Описание продукта: '+${el.getOpisproduct}"></p>
+        <p class="formStyle" th:text="'Ссылка на фото продукта: '+${el.getFotoproduct}"></p>
+        <div class="formStyle" th:each="el_: ${el.getKategoryProduct()}">
+        <p class="formStyle" th:text="'Категория продукта: '+${el_.getNazvprod}"></p>
+        </div>
+        <div class="formStyle" th:each="el_: ${el.getPostavshik()}">
+        <p class="formStyle" th:text="'Поставщик: '+${el_.getNamepostavshik}"></p>
+        </div>
+        <div class="formStyle" th:each="el_: ${el.getProizvoditel()}">
+        <p class="formStyle" th:text="'Производитель: '+${el_.getNameproizvoditel}"></p>
+        </div>
+        <div class="center-items">
+            <a class="btn" th:href="'/product/edit/'+${el.getId()}">Изменить</a>
+            <a class="btn" th:href="'/product/delete/'+${el.getId()}">Удалить</a>
+            <a class="btn" th:href="'/product'">Назад</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

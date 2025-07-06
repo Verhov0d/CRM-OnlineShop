@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    body {
+        font-family: "Bookman Old Style";
+        background: ghostwhite;
+    }
+    .center-items{
+        text-align: center;
+        vertical-align: middle;
+    }
+    .formStyle{
+        margin: 35px auto;
+        border-radius: 5px;
+        padding: 4px 12px;
+        width: 750px;
+        background: rgba(67,216,228,0.42);
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .formItem{
+        font-size: 24px;
+        font-weight: 500;
+        background-color: cyan;
+        border-radius: 5px;
+        padding: 12px;
+        border-color: cyan;
+        margin: 7px;
+        border-width: 1px;
+        width: 710px;
+    }
+    .btn{
+        background-color: rgba(67,216,228,0.42);
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 24px;
+        text-decoration: none;
+        border-color: cyan;
+        color: cyan;
+        font-weight: 500;
+    }
+
+    .errorView{
+        margin-left: 7px;
+        color: darkred;
+    }
+    a{
+        font-size: 24px;
+        padding: 10px;
+        text-decoration: none;
+        background-color: rgba(67,216,228,0.42);
+        align-items: center;
+        width: auto;
+        border-radius: 5px;
+        border-color: cyan;
+        border-width: 1px;  }
+</style>
+
+<body>
+<div class="center-items">
+    <div class="errorView" th:if="${param.error}">
+        Неправильный логин или пароль
+    </div>
+
+    <div class="errorView" th:if="${param.logout}">
+        Вы вышли из системы
+    </div>
+    <div class="formStyle">
+        <form th:action="@{/login}" method="post" >
+            <input type="text" name="username" placeholder="Логин" class="formItem"/> </label>
+            <input type="password" name="password" placeholder="Пароль" class="formItem" autocomplete="off"/> </label>
+            <input type="submit" value="Авторизироваться" class="btn" style="margin-top: 10px"/>
+        </form>
+    </div>
+    <a href="/registration">Зарегистрироваться</a>
+</div>
+</body>
+</html>

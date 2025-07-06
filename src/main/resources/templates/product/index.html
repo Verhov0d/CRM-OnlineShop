@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+          crossorigin="anonymous">
+    <div th:insert="fragment/header :: head"></div>
+</head>
+<style>
+    *, *::before, *::after {
+        margin: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: ghostwhite;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .center-items{
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .formStyle{
+        margin: 35px auto;
+        border-radius: 5px;
+        padding: 4px 12px;
+        width: 750px;
+        background: #E8E8E8;
+        font-size: 18px;
+        font-weight: 500;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .formItem{
+        margin-bottom: 5px;
+        margin-top: 5px;
+        margin-left: 10px;
+        text-decoration: none;
+        color: #1f1f1f;
+    }
+
+    .btn{
+        background-color: #4CAF50;
+        border-radius: 10px;
+        padding: 10px 20px;
+        font-size: 18px;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #ffffff;
+        font-weight: 300;
+        cursor: pointer;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn:hover{
+        background-color: #66BB6A;
+        transition: .3s;
+    }
+
+    .search{
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        font-size: 18px;
+        font-family: 'Segoe UI', sans-serif;
+        color: #333;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        max-width: 100%;
+        margin-right: 10px;
+        background-color: #E8E8E8;
+    }
+
+    .btnSearch{
+        font-size: 18px;
+        font-weight: 300;
+        background-color: #4CAF50;
+        border-radius: 10px;
+        padding: 10px 20px;
+        color: #ffffff;
+        border-width: 0px;
+        cursor: pointer;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+</style>
+<div class="center-items">
+    <form action="/product/filter" method="get">
+        <a class="btn" href="/product/add">Добавить</a>
+        <input class="search" type="text" placeholder="Введите наименование товара" name="searchName">
+        <input class="btnSearch" type="submit" value="Найти" >
+    </form>
+</div>
+
+<div class="formStyle" th:each="el : ${listProduct}">
+    <p class="formItem" th:text="'Номер: '+${el.getId()}"/>
+    <p class="formItem" th:text="'Наименование: '+${el.getNameproduct}"/>
+    <a class="formItem" th:href="'/product/details/'+${el.id}">Подробнее</a>
+</div>
+
+</body>
+</html>

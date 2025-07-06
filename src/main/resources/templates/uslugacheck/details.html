@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    body {
+        font-family: "Bookman Old Style";
+        background: ghostwhite;
+    }
+    .center-items{
+        text-align: center;
+        vertical-align: middle;
+    }
+    .formStyle{
+        margin: 35px auto;
+        border-radius: 5px;
+        padding: 4px 12px;
+        width: 750px;
+        background: rgba(88,88,88,0.82);
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .formItem{
+        margin-bottom: 5px;
+        margin-top: 5px;
+        margin-left: 10px;
+        text-decoration: none;
+        color: cyan;
+    }
+    .btn{
+        background-color: rgba(88,88,88,0.82);
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 24px;
+        text-decoration: none;
+        color: cyan;
+        font-weight: 500;
+    }
+</style>
+
+<body>
+<div>
+    <div class="formItem" th:each="el : ${uslugacheckUGU}">
+        <p class="formStyle" th:text="'Номер: '+${el.getId()}"></p>
+        <p class="formStyle" th:text="'Дата приобретения: '+${el.getDataPribor}"></p>
+        <div class="formStyle" th:each="el_: ${uslugacheckUGU.check2}">
+            <p class="formStyle" th:text="'Общая стоимость: '+${el_.getObshayacost()}"></p>
+        </div>
+        <div class="formStyle" th:each="el_: ${uslugacheckUGU.getUsluga()}">
+            <p class="formStyle" th:text="'Наименование продукта: '+${el_.getNameusluga()}"></p>
+        </div>
+        <div class="center-items">
+            <a class="btn" th:href="'/uslugacheck/edit/'+${el.getId()}">Изменить</a>
+            <a class="btn" th:href="'/uslugacheck/delete/'+${el.getId()}">Удалить</a>
+            <a class="btn" th:href="'/uslugacheck'">Назад</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

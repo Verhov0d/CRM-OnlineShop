@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    body {
+        font-family: "Bookman Old Style";
+        background: ghostwhite;
+    }
+    .center-items{
+        text-align: center;
+        vertical-align: middle;
+    }
+    .formStyle{
+        margin: 35px auto;
+        border-radius: 5px;
+        padding: 4px 12px;
+        width: 750px;
+        background: rgba(88,88,88,0.82);
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .formItem{
+        margin-bottom: 5px;
+        margin-top: 5px;
+        margin-left: 10px;
+        text-decoration: none;
+        color: cyan;
+    }
+    .btn{
+        background-color: rgba(88,88,88,0.82);
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 24px;
+        text-decoration: none;
+        color: cyan;
+        font-weight: 500;
+    }
+</style>
+
+<body>
+<div>
+    <div class="formItem" th:each="el : ${saleUGU}">
+        <p class="formStyle" th:text="'Номер: '+${el.getId()}"></p>
+        <p class="formStyle" th:text="'Наименование: '+${el.getNamesale}"></p>
+        <p class="formStyle" th:text="'Описание: '+${el.getDescriptionsale()}"></p>
+        <p class="formStyle" th:text="'Условие: '+${el.getConditionsale}"></p>
+        <p class="formStyle" th:text="'Размер: '+${el.getAmountsale}"></p>
+        <div class="center-items">
+            <a class="btn" th:href="'/sale/edit/'+${el.getId()}">Изменить</a>
+            <a class="btn" th:href="'/sale/delete/'+${el.getId()}">Удалить</a>
+            <a class="btn" th:href="'/sale'">Назад</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
